@@ -18,8 +18,8 @@ function getEmailDomain(email) {
 // of in een arrow
 const getEmailDomainArrow = (email) => email.split('@')[1];
 
-console.log(getEmailDomain("n.eeken@novi-education.nl"));
-console.log(getEmailDomainArrow("t.mellink@novi.nl"));
+console.log(getEmailDomain('n.eeken@novi-education.nl'));
+console.log(getEmailDomainArrow('t.mellink@novi.nl'));
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -29,20 +29,31 @@ console.log(getEmailDomainArrow("t.mellink@novi.nl"));
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
-function typeOfEmail(email) {
-    const domain = getEmailDomain(email);
+//Kan geloof ik op 2 manieren, in een if of een switch statement
 
-    if (domain === 'novi-education.nl') {
-        return 'Student';
-    } else if (domain === 'novi.nl' ) {
-        return 'Medewerker';
-    } else {
-        return 'Extern'
+// function typeOfEmail(email) {
+//     if (getEmailDomain(email) === 'novi-education.nl') {
+//         return 'Student';
+//     } if (getEmailDomain(email) === 'novi.nl') {
+//         return 'Medewerker';
+//     } else {
+//         return 'Extern';
+//     }
+// }
+
+function typeOfEmail(email) {
+    switch (getEmailDomain(email)) {
+        case 'novi-education.nl':
+            return 'Student';
+        case 'novi.nl':
+            return 'Medewerker';
+        default:
+            return 'Extern';
     }
 }
 
-console.log(typeOfEmail('n.eeken@novi-education.nl'));
-console.log(typeOfEmail('t.mellink@novi.nl'));
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
 console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
 console.log(typeOfEmail("a.wiersma@outlook.com"));
 
@@ -60,9 +71,9 @@ console.log(typeOfEmail("a.wiersma@outlook.com"));
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
 
 function checkEmailValidity(email) {
-    const Apenstaartje = email.includes('@');
-    const Comma = email.includes(',');
-    const indexLastCharacter = email.endsWith('.');
+    const Apenstaartje = email.includes("@");
+    const Comma = email.includes(",");
+    const indexLastCharacter = email.endsWith(".");
 
     return Apenstaartje && !Comma && !indexLastCharacter;
 }
